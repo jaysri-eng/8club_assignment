@@ -52,9 +52,9 @@ class _ExperienceSelectionScreenState extends State<ExperienceSelectionScreen> {
           // --- Background Image ---
           Positioned.fill(
             child: Image.asset(
-              'assets/bg_8club.png', // 🔹 replace with your image path
+              'assets/bg_8club.png', 
               fit: BoxFit.cover,
-              color: Colors.black.withOpacity(0.4), // optional tint overlay
+              color: Colors.black.withOpacity(0.4), 
               colorBlendMode: BlendMode.srcOver,
             ),
           ),
@@ -82,7 +82,7 @@ class _ExperienceSelectionScreenState extends State<ExperienceSelectionScreen> {
                         );
                     final double alignY = (adjustedFraction * 2.0) - 1.0;
 
-                    // --- Handle loading & error outside the animated container ---
+                    //  Handle loading & error outside the animated container 
                     if (state is ExperienceLoading) {
                       return const Center(
                         child: CircularProgressIndicator(color: Colors.white),

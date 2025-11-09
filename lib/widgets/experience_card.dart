@@ -15,12 +15,11 @@ class ExperienceCard extends StatelessWidget {
   });
 
   double _generateTilt(int id) {
-    // Generate consistent tilt based on experience id or name
     final int seed = id.hashCode;
     final math.Random random = math.Random(seed);
     // Random angle between -5 and +5 degrees
     final double tiltDegrees = (random.nextDouble() * 10) - 5;
-    return tiltDegrees * math.pi / 180; // convert to radians
+    return tiltDegrees * math.pi / 180; 
   }
 
   @override
@@ -32,8 +31,8 @@ class ExperienceCard extends StatelessWidget {
       child: Transform.rotate(
         angle: tiltAngle,
         child: Container(
-          height: 150, // fixed height
-          width: 100,  // fixed width
+          height: 150, 
+          width: 100, 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(

@@ -28,15 +28,15 @@ class TopWavyProgressBar extends StatelessWidget implements PreferredSizeWidget 
           filter: ImageFilter.blur(
             sigmaX: 80,
             sigmaY: 80,
-          ), // <– background blur
+          ), 
           child: Container(
-            color: Colors.white.withOpacity(0.1), // translucent white overlay
+            color: Colors.white.withOpacity(0.1), 
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Row(
                 children: [
-                  // --- Back Button ---
+                  //  Back Button 
                   IconButton(
                     onPressed: onBack ?? () => Navigator.of(context).maybePop(),
                     icon: const Icon(
@@ -46,7 +46,7 @@ class TopWavyProgressBar extends StatelessWidget implements PreferredSizeWidget 
                     ),
                   ),
               
-                  // --- Wavy Progress Bar (fills remaining space) ---
+                  //  Wavy Progress Bar (fills remaining space) 
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -59,7 +59,7 @@ class TopWavyProgressBar extends StatelessWidget implements PreferredSizeWidget 
                     ),
                   ),
               
-                  // --- Close Button ---
+                  //  Close Button
                   IconButton(
                     onPressed:
                         onClose ??

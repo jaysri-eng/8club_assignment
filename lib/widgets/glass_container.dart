@@ -16,7 +16,7 @@ class GlassContainer extends StatelessWidget {
       borderRadius: BorderRadius.circular(14),
       child: Stack(
         children: [
-          // Subtle background blur
+          // background blur
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
             child: Container(),
@@ -35,7 +35,6 @@ class GlassContainer extends StatelessWidget {
               borderRadius: BorderRadius.circular(14),
             ),
           ),
-          // Inner radial gradient fill
           Padding(
             padding: const EdgeInsets.all(0.5),
             child: Container(
