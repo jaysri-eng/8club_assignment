@@ -31,32 +31,9 @@ Onboarding Question Screen
     8. Audio/videos have delete/stop/cancel options
 
 Project Structure
+
+
 ![alt text](image.png)
-lib/
-├── main.dart
-├── models/
-│   └── experience.dart
-├── repositories/
-│   └── experience_repository.dart
-├── blocs/
-│   ├── experience/
-│   │   └── experience_bloc.dart
-│   └── onboarding/
-│       └── onboarding_bloc.dart
-├── components/
-    ├── audio_record_button.dart
-    ├── build_control_button.dart
-    ├── questionnaire_submission_dialog.dart
-    └── video_record_button.dart
-├── screens/
-│   ├── experience_selection_screen.dart
-│   └── onboarding_question_screen.dart
-│   └── top_wavy_progress_bar.dart
-└── widgets/
-    ├── experience_card.dart
-    ├── audio_recorder_widget.dart
-    └── video_recorder_widget.dart
-    └── glass_container.dart
 
 
 ## Default flutter project creation stuff 
