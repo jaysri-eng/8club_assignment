@@ -1,3 +1,6 @@
+import 'package:eightclub_assignment/components/audio_record_button.dart';
+import 'package:eightclub_assignment/components/questionnaire_submission_dialog.dart';
+import 'package:eightclub_assignment/components/video_record_button.dart';
 import 'package:eightclub_assignment/screens/top_wavy_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,49 +25,6 @@ class _OnboardingQuestionScreenState extends State<OnboardingQuestionScreen> {
   void dispose() {
     _textController.dispose();
     super.dispose();
-  }
-
-  void _handleNext(OnboardingState state) {
-    // Log the state
-    print('=== Onboarding Question State ===');
-    print('Question Text: ${state.questionText}');
-    print('Audio Path: ${state.audioPath ?? "No audio"}');
-    print('Video Path: ${state.videoPath ?? "No video"}');
-    print('================================');
-
-    // Show success dialog
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1A1A1A),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text(
-          'Submission Complete',
-          style: GoogleFonts.spaceGrotesk(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        content: Text(
-          'Your onboarding questionnaire has been submitted successfully!',
-          style: GoogleFonts.spaceGrotesk(color: const Color(0xFF9CA3AF)),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              'OK',
-              style: GoogleFonts.spaceGrotesk(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   @override
@@ -320,7 +280,7 @@ class _OnboardingQuestionScreenState extends State<OnboardingQuestionScreen> {
                                             onPressed:
                                                 state.questionText.isEmpty
                                                 ? null
-                                                : () => _handleNext(state),
+                                                : () => handleNext(context,state),
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
                                                   Colors.transparent,
@@ -384,108 +344,6 @@ class _OnboardingQuestionScreenState extends State<OnboardingQuestionScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-
-// Audio Record Button
-class AudioRecordButton extends StatelessWidget {
-  const AudioRecordButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<OnboardingBloc, OnboardingState>(
-      buildWhen: (prev, curr) => prev.isRecordingAudio != curr.isRecordingAudio,
-      builder: (context, state) {
-        final isActive = state.isRecordingAudio;
-
-        return GestureDetector(
-          onTap: () {
-            context.read<OnboardingBloc>().add(ToggleAudioRecording());
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                ),
-                gradient: isActive
-                    ? RadialGradient(
-                        colors: [
-                          const Color(0xFF222222).withOpacity(0.95),
-                          const Color(0xFF888888).withOpacity(0.3),
-                          const Color(0xFF888888).withOpacity(0.5),
-                        ],
-                        center: Alignment.topLeft,
-                        radius: 0.9,
-                      )
-                    : null,
-              ),
-              child: Icon(
-                isActive ? Icons.mic : Icons.mic_none_outlined,
-                size: 25,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-// Video Record Button
-class VideoRecordButton extends StatelessWidget {
-  const VideoRecordButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<OnboardingBloc, OnboardingState>(
-      buildWhen: (prev, curr) => prev.isRecordingVideo != curr.isRecordingVideo,
-      builder: (context, state) {
-        final isActive = state.isRecordingVideo;
-
-        return GestureDetector(
-          onTap: () {
-            context.read<OnboardingBloc>().add(ToggleVideoRecording());
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-                gradient: isActive
-                    ? RadialGradient(
-                        colors: [
-                          const Color(0xFF222222).withOpacity(0.95),
-                          const Color(0xFF888888).withOpacity(0.3),
-                          const Color(0xFF888888).withOpacity(0.5),
-                        ],
-                        center: Alignment.topLeft,
-                        radius: 0.9,
-                      )
-                    : null,
-              ),
-              child: Icon(
-                isActive ? Icons.videocam : Icons.videocam_outlined,
-                size: 25,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:eightclub_assignment/components/build_control_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
@@ -142,25 +143,6 @@ class _VideoRecorderWidgetState extends State<VideoRecorderWidget>
     return '${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
   }
 
-  Widget _buildControlButton({
-    required IconData icon,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.9),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(icon, color: Colors.white, size: 22),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<OnboardingBloc, OnboardingState>(
@@ -179,13 +161,13 @@ class _VideoRecorderWidgetState extends State<VideoRecorderWidget>
           child: Row(
             children: [
               if (_isRecording)
-                _buildControlButton(
+                buildControlButton(
                   icon: Icons.stop_rounded,
                   color: Color(0xff9196FF),
                   onTap: _stopRecording,
                 )
               else if (isRecorded)
-                _buildControlButton(
+                buildControlButton(
                   icon: Icons.videocam_rounded,
                   color: const Color(0xFF6D5DFB),
                   onTap: () {
@@ -195,7 +177,7 @@ class _VideoRecorderWidgetState extends State<VideoRecorderWidget>
                   },
                 )
               else
-                _buildControlButton(
+                buildControlButton(
                   icon: Icons.play_arrow_rounded,
                   color: const Color(0xFF6D5DFB),
                   onTap: _startRecording,
@@ -234,13 +216,13 @@ class _VideoRecorderWidgetState extends State<VideoRecorderWidget>
 
               // Cancel / Delete button
               if (_isRecording)
-                _buildControlButton(
+                buildControlButton(
                   icon: Icons.close_rounded,
                   color: Color(0xff9196FF),
                   onTap: _cancelRecording,
                 )
               else if (isRecorded)
-                _buildControlButton(
+                buildControlButton(
                   icon: Icons.delete_outline_rounded,
                   color: Colors.grey,
                   onTap: () {

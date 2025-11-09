@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:eightclub_assignment/components/build_control_button.dart';
 import 'package:flutter/material.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
@@ -126,25 +127,6 @@ class _AudioRecorderWidgetState extends State<AudioRecorderWidget> {
     return "$m:$s";
   }
 
-  Widget _buildControlButton({
-    required IconData icon,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 25,
-        height: 25,
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.9),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(icon, color: Colors.white, size: 17),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -200,13 +182,13 @@ class _AudioRecorderWidgetState extends State<AudioRecorderWidget> {
                         if (_isRecording) ...[
                           Row(
                             children: [
-                              _buildControlButton(
+                              buildControlButton(
                                 icon: Icons.stop,
                                 color: Color(0xff9196FF),
                                 onTap: _stopRecording,
                               ),
                               SizedBox(width: 10),
-                              _buildControlButton(
+                              buildControlButton(
                                 icon: Icons.close_rounded,
                                 color: Color(0xff9196FF),
                                 onTap: _cancelRecording,
