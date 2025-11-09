@@ -15,12 +15,14 @@ class TopWavyProgressBar extends StatelessWidget implements PreferredSizeWidget 
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize => const Size.fromHeight(50);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
+    final double topPadding = MediaQuery.of(context).padding.top;
+    return SizedBox(
+      height: preferredSize.height + topPadding,
+      width: double.infinity,
       child: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(
@@ -30,43 +32,46 @@ class TopWavyProgressBar extends StatelessWidget implements PreferredSizeWidget 
           child: Container(
             color: Colors.white.withOpacity(0.1), // translucent white overlay
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              children: [
-                // --- Back Button ---
-                IconButton(
-                  onPressed: onBack ?? () => Navigator.of(context).maybePop(),
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.white,
-                    size: 20,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Row(
+                children: [
+                  // --- Back Button ---
+                  IconButton(
+                    onPressed: onBack ?? () => Navigator.of(context).maybePop(),
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
-                ),
-
-                // --- Wavy Progress Bar (fills remaining space) ---
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: SizedBox(
-                      height: 18,
-                      child: CustomPaint(
-                        painter: _StaticWavyProgressPainter(progress: progress),
+              
+                  // --- Wavy Progress Bar (fills remaining space) ---
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: SizedBox(
+                        height: 18,
+                        child: CustomPaint(
+                          painter: _StaticWavyProgressPainter(progress: progress),
+                        ),
                       ),
                     ),
                   ),
-                ),
-
-                // --- Close Button ---
-                IconButton(
-                  onPressed:
-                      onClose ??
-                      () => Navigator.of(context).popUntil((r) => r.isFirst),
-                  icon: const Icon(
-                    Icons.close_rounded,
-                    color: Colors.white,
-                    size: 24,
+              
+                  // --- Close Button ---
+                  IconButton(
+                    onPressed:
+                        onClose ??
+                        () => Navigator.of(context).popUntil((r) => r.isFirst),
+                    icon: const Icon(
+                      Icons.close_rounded,
+                      color: Colors.white,
+                      size: 24,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
