@@ -33,6 +33,16 @@ Here's the demo link for the app: https://drive.google.com/file/d/16X7evnmqzWQ7X
 7. Video preview available after recording (same for audio playback)  
 8. Audio and video sections include **delete**, **stop**, and **cancel** controls
 
+## Brownie points (Optional enhancements) - features implemented
+
+# UI/UX
+- Try for a pixel perfect design. Refer spacings, fonts and colors from the figma file.
+- Keep the UI responsive, handle cases when the keyboard is open and viewport
+height is reduced.
+
+# State management
+- Implemented a state management solution using BloC to manage state.
+- Used Dio for managing the API call.
 
 Project Structure
 
