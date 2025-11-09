@@ -31,6 +31,7 @@ Onboarding Question Screen
     8. Audio/videos have delete/stop/cancel options
 
 Project Structure
+![alt text](image.png)
 lib/
 ├── main.dart
 ├── models/
